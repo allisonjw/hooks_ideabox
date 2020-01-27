@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { ideas } from './ideas';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     ideas,
 });
 

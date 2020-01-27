@@ -1,9 +1,11 @@
-export const addIdea = idea => ({
+export const addIdea = ideas => ({
     type: 'ADD_IDEA',
-    idea
+    id: ideas.id,
+    title: ideas.title,
+    description: ideas.description,
 });
 
-export const removeIdea = id => ({
+export const removeIdea = ideas => ({
     type: 'REMOVE',
-    id
+    id: ideas.id
 });

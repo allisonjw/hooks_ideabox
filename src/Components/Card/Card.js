@@ -1,13 +1,24 @@
 import React from 'react';
+import { removeIdea } from '../../actions/actions';
+import { connect } from 'react-redux';
 import './Card.css';
 
-const Idea = ({ id, text, completed }) => {
+export const Card = ({ id, title, description, removeIdea }) => {
+    
   return (
       <article className="idea_article">
-          <p>{text}</p>
-          <p>{completed}</p>
+          <p>{title}</p>
+          <p>{description}</p>
+          <button 
+          onClick={() => removeIdea(id)}
+          >🗑</button>
       </article>
   )
 };
 
-export default Idea;
+const mapDispatch = dispatch => ({
+    removeIdea: id => dispatch( removeIdea(id) )
+});
+  
+export default connect(null, mapDispatch)(Card);
+  

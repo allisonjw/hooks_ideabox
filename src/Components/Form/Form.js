@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { addIdea } from '../../actions/actions';
 import { connect } from 'react-redux';
 import './Form.css';
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { idea: '' };
-  }
+const Form = ({ addIdea }) => {
+    const id = useState((Date.now()));
+    const [title, titleSetter] = useState(' ');
+    const [description, descriptionSetter] = useState(' ');
+  
+    const addNewIdea = (e) => {
+        e.preventDefault()
+        titleSetter('')
+        descriptionSetter(' ')
+        addIdea({ id, title, description });
+    }
 
-  handleChange = (e) => {
-    this.setState({ idea: e.target.value });
-  }
-
-  submitForm = (e) => {
-    e.preventDefault()
-    this.props.addIdea(this.state.idea)
-    this.setState({ idea: '' });
-  }
-
-  render() {
     return (
       <section>
-        <form onSubmit={this.submitForm}>
+        <form>
+        <label>Title: </label>
           <input
-            value={this.state.idea}
-            placeholder="Add A Idea"
-            onChange={this.handleChange} />
-          <button>Add Idea</button>
+            value={title}
+            placeholder="Add A Title"
+            onChange={(e) => titleSetter(e.target.value)} />
+        <label>Description: </label>
+          <input
+            value={description}
+            placeholder="Add A Description"
+            onChange={(e) => descriptionSetter(e.target.value)} />  
+          <button onClick={addNewIdea}>Add Idea</button>
         </form>
       </section>
     )
-  }
 }
 
-const mapDispatchToProps = dispatch => ({
-  addIdea: text => dispatch( addIdea(text) )
-})
+export const mapDispatch = dispatch => ({
+  addIdea: ideas => dispatch( addIdea(ideas) )
+});
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(null, mapDispatch)(Form);

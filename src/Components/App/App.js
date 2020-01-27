@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Form from '../Form/Form';
 import Ideas from '../Ideas/Ideas';
 import './App.css';
 
-class App extends Component {
-  render() {
+const App = () => {
+
     return (
       <div className="App">
-        <h1>Another Todo Box</h1>
+        <h1>Ideabox with Hooks</h1>
         <Form />
         <Ideas />
       </div>
     );
-  }
 }
 
 export default App;

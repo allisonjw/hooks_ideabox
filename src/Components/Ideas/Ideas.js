@@ -3,25 +3,25 @@ import Card from '../Card/Card';
 import { connect } from 'react-redux';
 import './Ideas.css';
 
-const Ideas = ({ ideas }) => {
+export const Ideas = ({ ideas }) => {
   const displayIdeas = ideas.map(idea => {
     return (
       <Card
-        {...idea}
-        key={idea.id}
+      key={idea.id}
+      {...idea}
       />
     )
-  })
+  });
 
   return (
-    <ul>
+    <section className="ideas-section">
       {displayIdeas}
-    </ul>
+    </section>
   )
 }
 
-const mapStateToProps = state => ({
+export const mapState = state => ({
   ideas: state.ideas
 });
 
-export default connect(mapStateToProps)(Ideas);
+export default connect(mapState)(Ideas);
